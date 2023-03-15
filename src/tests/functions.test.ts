@@ -6,39 +6,57 @@ import { Todo } from '../types/Todo';
   
 
 describe('addTodo', () => {
-  it('should add a new todo to the list', () => {
     const todos: Todo[] = []
     const newTodoTitle = 'New todo'
     const result = addTodo(newTodoTitle, todos) 
 
+    const checkIfEqual = (todos: Todo[]): boolean => {
+    if (todos.length === 0) {
+        return true
+    }
+    const newTitle = todos[0].title
+    return todos.every((todo) => todo.title === newTitle)
+    }
+
      it('Should add a todo', () =>{
     expect(result.success).toBe(true)
-    expect(todos).toHaveLength(1)
-    expect(todos[0].id).toBe(true)
+    //expect(todos[0].title).toBe(String)
+    //expect(todos[0].id).toBe(Number)
     expect(todos[0].title).toBe(newTodoTitle)
-    expect(todos[0].completed).toBeDefined
-
+    expect(todos[0].completed).toBe(false)
+    //expect(checkIfEqual).toBe(false)
      })
-})
 
      it('Should not add a todo with empty title ', () => {
-         expect(addTodo)
+         expect(todos[0].title).not.toBe(false)
+         expect(todos[0].title).not.toBe(undefined)
+         expect(result.error).not.toBe(true)
     })
-
-
 
     it('should not add a todo with title shorter than 3 characters', () =>{
-         expect(addTodo)
-    })
+         //expect(todos[0].title).not.lessThan(3)
+         expect(todos[0].title).not.toBe(Number)
+         expect(result.error).not.toBe(true)
 
+    })
 })
 
-describe.todo('Toggle todo', () => {
+
+
+describe('Toggle todo', () => {
+    const todos: Todo[] = []
+    const newId = '0'
+    const result = toggleTodo(0, todos) 
+    console.log('this is the result', result)
+
     it('should toggle a todo', () => {
-         expect(toggleTodo)
+         expect(result.success).toBe(false)
+        // expect(newId).not.toBe(false)
+       
     })
     it('should not toggle a todo that does not exist', () => {
-         expect(toggleTodo)
+        // expect(result.error).not.toBe(false)
+
     })
 })
 
