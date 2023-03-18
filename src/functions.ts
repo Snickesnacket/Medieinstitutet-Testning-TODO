@@ -13,8 +13,9 @@ export const addTodo = (title: string, todos: Todo[]): Result => {
 		return {
 			success: false,
 			error: 'Title cannot be empty',
+			
 		}
-	}
+	}       
 
 	// check if title isn't long enough
 	if (title.length < 3) {
@@ -51,6 +52,7 @@ export const toggleTodo = (id: number, todos: Todo[]): Result => {
 	// find todo by id
 	const todo = todos.find(todo => todo.id === id)
 
+
 	// if no todo is found, return error
 	if (!todo) {
 		return {
@@ -60,7 +62,6 @@ export const toggleTodo = (id: number, todos: Todo[]): Result => {
 	}
 
 	let result = todo.completed = !todo.completed
-
 	return {
 		success: true,
 	}

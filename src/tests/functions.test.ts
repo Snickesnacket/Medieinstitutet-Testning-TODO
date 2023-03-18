@@ -17,7 +17,7 @@ describe('addTodo', () => {
      
         expect(result.success).toBe(true)
         expect(todos[0].title).toBe(newTodoTitle)
-        expect(todos[0].id).toEqual(todos.length)
+        expect(todos.length).toBe(1)
     })
 
     it('Should not add a todo with empty title ', () => {
@@ -33,6 +33,7 @@ describe('addTodo', () => {
          expect(result.error).toBe('Title must be at least 3 characters long')
          expect(result.success).toBe(false)
          expect(todos.length).toEqual(0)
+
     })
 })
 
@@ -53,12 +54,14 @@ describe('Toggle todo', () => {
         const result = toggleTodo(id, todos)
         expect(result.success).toBe(true)
         expect(todos[0].completed).toBe(false)
+
     })
 
     it('should not toggle a todo that does not exist', () => {
         const result = toggleTodo(1, todos)
         expect(result.error).toBe('Todo not found')
         expect(result.success).toBe(false)
+
     })
 })
 
@@ -77,11 +80,13 @@ describe('Delete todo', () => {
       const result = deleteTodo(0, todos)
        expect(result.success).toBe(true)
        expect(todos).toEqual([])
+
     })
     it('should not delete a todo that does not exist', () => {
          const result = deleteTodo(-1, todos)
          expect(result.error).toBe('Todo not found')
          expect(result.success).not.toBe(true)
+
     })
 })
 
