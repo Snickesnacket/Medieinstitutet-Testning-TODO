@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { addTodo,  toggleTodo, deleteTodo } from '../functions'
 import { Todo } from '../types/Todo';
 
@@ -6,38 +6,34 @@ import { Todo } from '../types/Todo';
   
 
 describe('addTodo', () => {
-    const todos: Todo[] = []
-    const newTodoTitle = 'New todo'
-    const result = addTodo(newTodoTitle, todos) 
+    let todos: Todo[] = []
 
-    const checkIfEqual = (todos: Todo[]): boolean => {
-    if (todos.length === 0) {
-        return true
-    }
-    const newTitle = todos[0].title
-    return todos.every((todo) => todo.title === newTitle)
-    }
+      beforeEach(() => {
+    todos = [];
+   });
 
      it('Should add a todo', () =>{
-    expect(result.success).toBe(true)
-    //expect(todos[0].title).toBe(String)
-    //expect(todos[0].id).toBe(Number)
-    expect(todos[0].title).toBe(newTodoTitle)
-    expect(todos[0].completed).toBe(false)
-    //expect(checkIfEqual).toBe(false)
-     })
+        const newTodoTitle = 'New todo'
+        const result = addTodo(newTodoTitle, todos);
+     
+        expect(result.success).toBe(true)
+        expect(todos[0].title).toBe(newTodoTitle)
+        expect(todos[0].id).toEqual(todos.length)
+    })
 
-     it('Should not add a todo with empty title ', () => {
-         expect(todos[0].title).not.toBe(false)
-         expect(todos[0].title).not.toBe(undefined)
-         expect(result.error).not.toBe(true)
+    it('Should not add a todo with empty title ', () => {
+        const result = addTodo('', todos);
+        expect(todos.length).toBe(0)
+        expect(result.error).toBe('Title cannot be empty')
+        expect(result.success).toBe(false)
+     
     })
 
     it('should not add a todo with title shorter than 3 characters', () =>{
-         //expect(todos[0].title).not.lessThan(3)
-         expect(todos[0].title).not.toBe(Number)
-         expect(result.error).not.toBe(true)
-
+        const result = addTodo('0', todos);
+         expect(result.error).toBe('Title must be at least 3 characters long')
+         expect(result.success).toBe(false)
+         expect(todos.length).toEqual(0)
     })
 })
 
