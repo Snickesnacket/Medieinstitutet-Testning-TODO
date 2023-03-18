@@ -55,13 +55,11 @@ export const toggleTodo = (id: number, todos: Todo[]): Result => {
 	if (!todo) {
 		return {
 			success: false,
-			error: 'tjosan, Todo not found',
+			error: 'Todo not found',
 		}
 	}
 
 	let result = todo.completed = !todo.completed
-
-	console.log("hallå var är vi????/",result)
 
 	return {
 		success: true,
@@ -88,7 +86,6 @@ export const deleteTodo = (id: number, todos: Todo[]): Result => {
 
 	// remove todo from todos-array
 	let result = todos.splice(index, 1)
-	console.log(result)
 	return {
 		success: true,
 	}

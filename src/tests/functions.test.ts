@@ -7,7 +7,6 @@ import { Todo } from '../types/Todo';
 
 describe('addTodo', () => {
     let todos: Todo[] = []
-
       beforeEach(() => {
     todos = [];
    });
@@ -38,31 +37,51 @@ describe('addTodo', () => {
 })
 
 
-
+ 
 describe('Toggle todo', () => {
-    const todos: Todo[] = []
-    const newId = '0'
-    const result = toggleTodo(0, todos) 
-    console.log('this is the result', result)
+    const todos: Todo[] = [
+        {
+        id: 0,
+        title: "",
+        completed: false
+        }
+    ]
 
     it('should toggle a todo', () => {
-         expect(result.success).toBe(false)
-        // expect(newId).not.toBe(false)
-       
+        const id =0
+        todos[0].completed = true
+        const result = toggleTodo(id, todos)
+        expect(result.success).toBe(true)
+        expect(todos[0].completed).toBe(false)
     })
-    it('should not toggle a todo that does not exist', () => {
-        // expect(result.error).not.toBe(false)
 
+    it('should not toggle a todo that does not exist', () => {
+        const result = toggleTodo(1, todos)
+        expect(result.error).toBe('Todo not found')
+        expect(result.success).toBe(false)
     })
 })
 
 
-describe.todo('Delete todo', () => {
+describe('Delete todo', () => {
+    const todos: Todo[] = [
+        {
+        id: 0,
+        title: "",
+        completed: false
+        }
+    ]
+ 
+
     it('should delete a todo', () => {
-         expect(deleteTodo)
+      const result = deleteTodo(0, todos)
+       expect(result.success).toBe(true)
+       expect(todos).toEqual([])
     })
     it('should not delete a todo that does not exist', () => {
-         expect(deleteTodo)
+         const result = deleteTodo(-1, todos)
+         expect(result.error).toBe('Todo not found')
+         expect(result.success).not.toBe(true)
     })
 })
 
