@@ -1,5 +1,7 @@
 # Medieinstitutet-Testning-TODO
 
+## Betyg: G 
+
 
 ## Enhetstester med jest
 
@@ -32,3 +34,5 @@ Skapa nedan 7 tester för de funktioner som finns i `functions.ts`. Ni får så 
 - delete todo
   - should delete a todo
   - should not delete a todo that does not exist
+ 
+  
