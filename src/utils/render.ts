@@ -1,8 +1,6 @@
 import { Todo } from '../types/Todo'
 
-// render todos
 export const renderTodos = (todos: Todo[]) => {
-	// replace todosList content
 	const todosEl = document.querySelector<HTMLUListElement>('#todos')!
 	todosEl.innerHTML = todos
 		.map(todo =>
