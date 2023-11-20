@@ -17,6 +17,9 @@ För att få en code coverage report så kör:
 - `npm run coverage`
 
 ## Uppgiftsbeskrivning
+Bedömningskriterier
+På denna uppgiften kan ni få IG/G.
+
 Skapa nedan 7 tester för de funktioner som finns i `functions.ts`. Ni får så klart skapa fler tester om ni vill, men nedan krävs för godkänt. Detta kommer att ge er ett G.
 
 - add todo
